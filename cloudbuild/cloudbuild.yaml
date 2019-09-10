@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/mvn'
   env: ['DATABASE_NAME=recipease','JDBC_PASSWORD=123','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=abc']
-  args: ['build', '-t', 'gcr.io/project2-251819/recipeasestaging', '.']
+  args: ['build', '-t', 'gcr.io/project2-251819/nodeserver', '.']
 timeout: "2000s"
