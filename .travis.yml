@@ -8,7 +8,6 @@ addons:
       - oracle-java9-installer
 after_success:
   - docker build -t gcr.io/project2-251819/github.com/1907cloudgcp/recipeasev1:0.0.1 .
-  - docker build -t gcr.io/project2-251819/testtest/r .
 
 before_install:
 - chmod +x mvnw
