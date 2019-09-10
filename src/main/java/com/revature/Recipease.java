@@ -12,10 +12,4 @@ public class Recipease {
 	public static void main(String[] args) {
 		SpringApplication.run(Recipease.class, args);
 	}
-	
-	@GetMapping("/")
-	public String home(){
-		return "Hello Swagger!!!";
-	}
-
 }
