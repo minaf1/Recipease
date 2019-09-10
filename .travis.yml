@@ -9,4 +9,4 @@ addons:
 before_install:
   - chmod +x mvnw
 after_success:
-  - docker build -t gcr.io/	project2-251819/recipease:v1 .
+  - docker build -t gcr.io/project2-251819/recipease:v1 .
