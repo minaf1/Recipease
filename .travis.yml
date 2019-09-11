@@ -9,7 +9,7 @@ addons:
 after_success:
 #  - docker build -t gcr.io/project2-251819/github.com/1907cloudgcp/recipeasev1:0.0.1 .
   - docker-credential-gcr configure-docker
-  - gcloud auth activate-service-account 
+  - gcloud auth activate-service-account --key-file ${JSON_key_file}
   - docker build -t image .
   - docker tag image gcr.io/project2-251819/github.com/image
   - gcloud docker -- push gcr.io/project2-251819/github.com/image
