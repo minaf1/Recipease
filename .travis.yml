@@ -8,6 +8,8 @@ addons:
       - oracle-java9-installer
 after_success:
 #  - docker build -t gcr.io/project2-251819/github.com/1907cloudgcp/recipeasev1:0.0.1 .
+  - gcloud components install docker-credential-gcr
+  - docker-credential-gcr configure-docker
   - docker build -t image .
   - docker tag image gcr.io/project2-251819/github.com/image
   - gcloud docker -- push gcr.io/project2-251819/github.com/image
