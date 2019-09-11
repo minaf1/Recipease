@@ -8,10 +8,9 @@ addons:
       - oracle-java9-installer
 after_success:
 #  - docker build -t gcr.io/project2-251819/github.com/1907cloudgcp/recipeasev1:0.0.1 .
-  - gcloud auth configure-docker
   - docker build -t image .
   - docker tag image gcr.io/project2-251819/github.com/image
-  - sudo docker push gcr.io/project2-251819/github.com/image
+  - cloud docker push gcr.io/project2-251819/github.com/image
 
 before_install:
 - chmod +x mvnw
