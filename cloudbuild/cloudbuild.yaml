@@ -1,7 +1,23 @@
 steps:
 - name: 'gcr.io/cloud-builders/mvn'
   args: ['install']
-  env: ['DATABASE_NAME=recipease','JDBC_PASSWORD=recipease','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=postgres']
+  env: ['DATABASE_NAME=$DATABASE_NAME','JDBC_PASSWORD=$JDBC_PASSWORD','JDBC_SCHEMA=$JDBC_SCHEMA','JDBC_URL=$JDBC_URL','JDBC_USERNAME=$JDBC_USERNAME']
+  secretEnv: ['DATABASE_NAME', 'JDBC_PASSWORD', 'JDBC_USERNAME', 'JDBC_URL', 'JDBC_SCHEMA']
+
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/project2-251819/recipease', '.']
 images: ['gcr.io/project2-251819/recipease']
+
+secrets:
+- kmsKeyName: projects/project2-251819/locations/global/keyRings/db_keyring/cryptoKeys/db_key
+  secretEnv:
+    DATABASE_NAME: CiQAXCcwx/QhzQhi1GAOnuIuBZPU2Wq/JcSkroJbonXSSoKFUHgSMgAQAZBNgNJE8EI0kxiaAnq5
+NTFWIEMjfuv5oepz6Uv5L4OeIpQafgx+Rp5Oi0kkUU7t
+    JDBC_URL: CiQAXCcwx+km3UpkvthHO3qFnpKt6s1ciI33WDo+2wQTKGOeu40SNQAQAZBNoWLfaVKbKfMuFiML
+OSbIvzl98ebSmj+S7cUIYlDL6e1gkDuz2nUKDi1OzA1dCRVK
+    JDBC_SCHEMA: CiQAXCcwx0q1EMrsvkSeXL1R/jNDvXV3yP/RDtcycUgN9SmCW2ISMgAQAZBN6C6O0yDCkwi81AJI
+6WrRXoAUupz1L6eUxVXanh6rZOGCNzK119aKGjFEDEqa
+    JDBC_USERNAME: CiQAXCcwxwJFCuhMV5NgplGusBhOT5OWMiTyeZdQwTivk1wSR+0SLAAQAZBNiiUYF9WkVWpYfOBr
+1EZtpXv0xMrzkYEEi8YfFwmz5DDPhcsTVq8e
+    JDBC_PASSWORD: CiQAXCcwxzLNM5Sf1giTVB18WX8wMdJfudgY3WfB6vy98ljS3nwSLAAQAZBN0mkewD9frIqhxo7A
+hrvOdRUCs9gCXpJd2ppdaVfF6E+v9PEjeSvq
