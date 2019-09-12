@@ -12,18 +12,16 @@ steps:
   #- name: 'gcr.io/cloud-builders/docker'
   #args: ['build', '--tag=gcr.io/project2-251819/github.com', '.']
   - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/project2-251819/github.com', 'DATABASE_NAME=recipease', 'JDBC_SCHEMA=recipease', 'JDBC_URL=34.70.51.191', 'JDBC_USERNAME=abc', 'JDBC_PASSWORD=123', '.']
+  args: ['build --tag=gcr.io/project2-251819/github.com --DATABASE_NAME=recipease --JDBC_SCHEMA=recipease --JDBC_URL=34.70.51.191 --JDBC_USERNAME=abc --JDBC_PASSWORD=abc .']
   secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
 images: ['gcr.io/project2-251819/github.com']
-options:
-  env: ['DATABASE_NAME=recipease', 'JDBC_PASSWORD=123','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=abc']
 
 secrets:
 - kmsKeyName: 'projects/project2-251819/locations/global/keyRings/db_keyring/cryptoKeys/db_key'
-secretEnv:
-    DATABASE_NAME: 'CiQAXCcwx8E+EGfBl1Vq30tl17GLlBLaQSRsuENEZaeopaDp6+kSMgAQAZBNdoWcw2Y+D4UrIJF+RtyyKhmbF8gXoihSX9KrCNc6ka8ib4d/kpoPsDT5G3yh'
-    JDBC_URL: 'CiQAXCcwx9Q8rQKMxL4zvckIRbCqzw95ZBbyWWu9BLM3137593MSNQAQAZBNcfvAB6HBsRjz1jYsfSMk+nu7RyFkh2enhdixyRzzNO4O/D9r83C+/aGMF6QTX+aB'
-    JDBC_SCHEMA: 'CiQAXCcwx2I0h2pJ1ee6D+UF/IqN7jHSdMXd6Ttv+mCWN8G1gnwSMgAQAZBNB4CBDasVFeKhQRJPvEZPkyR+DHDV8QcraAFR1lXX5u4Z7zIG+I0LZySsDG3W'
-    JDBC_USERNAME: 'CiQAXCcwx6Y4up7e18xteWfXdISKb9dEnkbvUHSCnBQ0KMdt7Q0SLAAQAZBNmeM3nr66wpiP6wYq7AaMqaqLsRAiQeXAZ8niwdXwkrD2iSNGRlXL'
-    JDBC_PASSWORD: 'CiQAXCcwxz0UqXJ0vmgRVz1a7Ctyw2kAINZPWtptWMI433j+AigSLAAQAZBNDMpEtDxaa4TTg8H43LmUnlMfDxDxGjyGW9er7hRX7vsiRQKBF+bT'
+  secretEnv:
+    DATABASE_NAME: 'CiQAXCcwx6BzSjvRp1MVGoFw+pgRJhdOvZ+j8bKJfqpBJlfV7zASNgAQAZBNGxzsVTZVeP7v+2gvHVB+9JbY7qkaXVJJPMRGI3/hMzjTENMN1cmN7GpuSu1p9bzixw=='
+    JDBC_URL: 'CiQAXCcwx3H8lDFJquFwbKo6BAK1uwqKOE7HqK2hJC9f8bduOnESOQAQAZBNfhGANdNDsPDkwhUHNkhxQBtROdJL0jCxUV50z9i6/hPqbwp0232V43bJ2vMiHdrSrQb7ag=='
+    JDBC_SCHEMA: 'CiQAXCcwxwygYa9hU8BnjEc3fh2gU9vWvIe82ybbfCFbI2KDqQ0SNgAQAZBNOd8Xyhh1lotg7MKqbd1SYQHLcbu7gV8OBpLCpLYHdc035Vbf78lOdaJ63Hr0k/YH/A=='
+    JDBC_USERNAME: 'CiQAXCcwx3hZ5INJChaF7mSxR5jTYNQ2uvNBiJ9H/qbAI/CTZZYSMAAQAZBNrRIX8EYsdPH/BV+bO50cYHjD7tXg4lGVDhuVuXkN7l0v/H8waibJ0AHEQA=='
+    JDBC_PASSWORD: 'CiQAXCcwxxIRpAMka8j26AkZkJeHHiIsDqHDABpiu/5R0RQ0VA8SMAAQAZBN6aLHE8Pf34Z0XbhY5AqmUqJCagqx5/1p+IVDNHl9XCZUnAJ6V+hal2MeiQ=='
 timeout: "1500s"
