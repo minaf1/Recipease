@@ -2,6 +2,15 @@ steps:
 - name: 'gcr.io/cloud-builders/mvn'
   args: ['install']
   env: ['DATABASE_NAME=recipease','JDBC_PASSWORD=abc','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=abc']
+  secretEnv:
+  - 'DATABASE_NAME'
+  - 'JDBC_SCHEMA'
+  - 'JDBC_URL'
+  - 'JDBC_USERNAME'
+  - 'JDBC_PASSWORD'
+    
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/project2-251819/github.com', '.']
+  entrypoint: 'bash'
+  args: ['-c', 'docker build', '--tag=gcr.io/project2-251819/github.com', '.']
+  secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
 images: ['gcr.io/project2-251819/github.com']
