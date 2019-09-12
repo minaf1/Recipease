@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/mvn'
   args: ['install']
-  #env: ['DATABASE_NAME=recipease','JDBC_PASSWORD=123','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=abc']
+  env: ['DATABASE_NAME=recipease','JDBC_PASSWORD=abc','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=abc']
   secretEnv:
   - 'DATABASE_NAME'
   - 'JDBC_SCHEMA'
@@ -12,9 +12,9 @@ steps:
   #- name: 'gcr.io/cloud-builders/docker'
   #args: ['build', '--tag=gcr.io/project2-251819/github.com', '.']
   - name: 'gcr.io/cloud-builders/docker'
-  args: ['build --tag=gcr.io/project2-251819/github.com --buildarg DATABASE_NAME=$$DATABASE_NAME --buildarg JDBC_SCHEMA=$$JDBC_SCHEMA --buildarg JDBC_URL=$$JDBC_URL --buildarg JDBC_USERNAME=$$JDBC_USERNAME --buildarg JDBC_PASSWORD=$$JDBC_PASSWORD .']
-  secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
-images: ['gcr.io/project2-251819/github.com']
+    args: ['build --tag=gcr.io/project2-251819/github.com --buildarg DATABASE_NAME=$$DATABASE_NAME --buildarg JDBC_SCHEMA=$$JDBC_SCHEMA --buildarg JDBC_URL=$$JDBC_URL --buildarg JDBC_USERNAME=$$JDBC_USERNAME --buildarg JDBC_PASSWORD=$$JDBC_PASSWORD .']
+    secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
+#images: ['gcr.io/project2-251819/github.com']
 
 secrets:
 - kmsKeyName: 'projects/project2-251819/locations/global/keyRings/db_keyring/cryptoKeys/db_key'
