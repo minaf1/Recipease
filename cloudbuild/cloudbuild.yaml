@@ -1,31 +1,7 @@
 steps:
-# Run tests using maven
-- name: 'maven:3.6.1-jdk-8-slim'
-  entrypoint: 'mvn'
+- name: 'gcr.io/cloud-builders/mvn'
   args: ['install']
-  secretEnv:
-  - 'DATABASE_NAME'
-  - 'JDBC_SCHEMA'
-  - 'JDBC_URL'
-  - 'JDBC_USERNAME'
-  - 'JDBC_PASSWORD'
-# Build image
+  env: ['DATABASE_NAME=recipease','JDBC_PASSWORD=123','JDBC_SCHEMA=recipease','JDBC_URL=34.70.51.191','JDBC_USERNAME=abc']
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker build -t gcr.io/project2-251819/github.com -f ./Dockerfile --build-arg DATABASE_NAME=$$DATABASE_NAME --build-arg JDBC_SCHEMA=$$JDBC_SCHEMA --build-arg JDBC_URL=$$JDBC_URL --build-arg JDBC_USERNAME=$$JDBC_USERNAME --build-arg JDBC_PASSWORD=$$JDBC_PASSWORD .']
-  secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
-# Push image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/project2-251819/github.com']
-# Deploy into App Engine
-#- name: "gcr.io/cloud-builders/gcloud"
-#args: ['app', 'deploy', './devops/app.yaml', '--image-url=gcr.io/project2-251819/github.com']
-secrets:
-- kmsKeyName: 'projects/project2-251819/locations/global/keyRings/db_keyring/cryptoKeys/db_key'
-  secretEnv:
-    DATABASE_NAME: 'CiQAXCcwx6BzSjvRp1MVGoFw+pgRJhdOvZ+j8bKJfqpBJlfV7zASNgAQAZBNGxzsVTZVeP7v+2gvHVB+9JbY7qkaXVJJPMRGI3/hMzjTENMN1cmN7GpuSu1p9bzixw=='
-    JDBC_URL: 'CiQAXCcwx3H8lDFJquFwbKo6BAK1uwqKOE7HqK2hJC9f8bduOnESOQAQAZBNfhGANdNDsPDkwhUHNkhxQBtROdJL0jCxUV50z9i6/hPqbwp0232V43bJ2vMiHdrSrQb7ag=='
-    JDBC_SCHEMA: 'CiQAXCcwxwygYa9hU8BnjEc3fh2gU9vWvIe82ybbfCFbI2KDqQ0SNgAQAZBNOd8Xyhh1lotg7MKqbd1SYQHLcbu7gV8OBpLCpLYHdc035Vbf78lOdaJ63Hr0k/YH/A=='
-    JDBC_USERNAME: 'CiQAXCcwx3hZ5INJChaF7mSxR5jTYNQ2uvNBiJ9H/qbAI/CTZZYSMAAQAZBNrRIX8EYsdPH/BV+bO50cYHjD7tXg4lGVDhuVuXkN7l0v/H8waibJ0AHEQA=='
-    JDBC_PASSWORD: 'CiQAXCcwxxIRpAMka8j26AkZkJeHHiIsDqHDABpiu/5R0RQ0VA8SMAAQAZBN6aLHE8Pf34Z0XbhY5AqmUqJCagqx5/1p+IVDNHl9XCZUnAJ6V+hal2MeiQ=='
-timeout: "1500s"
+  args: ['build', '--tag=gcr.io/project2-251819/github.com', '.']
+images: ['gcr.io/project2-251819/github.com']
