@@ -10,7 +10,7 @@ spring:
     initilization-mode: never
     password: ${JDBC_PASSWORD}
     username: ${JDBC_USERNAME}
-    url: jdbc:postgresql://${JDBC_URL}:5432/${JDBC_SCHEMA}
+    url: jdbc:postgresql://${JDBC_URL}:5432/${DATABASE_NAME}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: false
@@ -18,5 +18,5 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        default_schema: recipease
+        default_schema: ${JDBC_SCHEMA}
     show-sql: false
