@@ -1,22 +1,22 @@
 steps:
 # Run tests using maven
 - name: 'maven:3.6.1-jdk-8-slim'
- entrypoint: 'mvn'
- args: ['install']
- secretEnv:
- - 'DATABASE_NAME'
- - 'JDBC_SCHEMA'
- - 'JDBC_URL'
- - 'JDBC_USERNAME'
- - 'JDBC_PASSWORD'
+  entrypoint: 'mvn'
+  args: ['install']
+  secretEnv:
+  - 'DATABASE_NAME'
+  - 'JDBC_SCHEMA'
+  - 'JDBC_URL'
+  - 'JDBC_USERNAME'
+  - 'JDBC_PASSWORD'
 # Build image
 - name: 'gcr.io/cloud-builders/docker'
- entrypoint: 'bash'
- args: ['-c', 'docker build -t gcr.io/project2-251819/github.com -f ./Dockerfile --build-arg DATABASE_NAME=$$DATABASE_NAME --build-arg JDBC_SCHEMA=$$JDBC_SCHEMA --build-arg JDBC_URL=$$JDBC_URL --build-arg JDBC_USERNAME=$$JDBC_USERNAME --build-arg JDBC_PASSWORD=$$JDBC_PASSWORD .']
- secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
+  entrypoint: 'bash'
+  args: ['-c', 'docker build -t gcr.io/project2-251819/github.com -f ./Dockerfile --build-arg DATABASE_NAME=$$DATABASE_NAME --build-arg JDBC_SCHEMA=$$JDBC_SCHEMA --build-arg JDBC_URL=$$JDBC_URL --build-arg JDBC_USERNAME=$$JDBC_USERNAME --build-arg JDBC_PASSWORD=$$JDBC_PASSWORD .']
+  secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
 # Push image
 - name: 'gcr.io/cloud-builders/docker'
- args: ['push', 'gcr.io/project2-251819/github.com']
+  args: ['push', 'gcr.io/project2-251819/github.com']
 # Deploy into App Engine
 #- name: "gcr.io/cloud-builders/gcloud"
 #args: ['app', 'deploy', './devops/app.yaml', '--image-url=gcr.io/project2-251819/github.com']
