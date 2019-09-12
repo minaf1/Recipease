@@ -8,9 +8,9 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     initilization-mode: never
-    password: 123
-    username: abc
-    url: jdbc:postgresql://34.70.51.191:5432/recipease
+    password: ${JDBC_PASSWORD}
+    username: ${JDBC_USERNAME}
+    url: jdbc:postgresql://${JDBC_URL}:5432/${JDBC_SCHEMA}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: false
