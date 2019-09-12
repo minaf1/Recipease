@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/project2-251819/github.com', 'DATABASE_NAME=recipease', 'JDBC_SCHEMA=recipease', 'JDBC_URL=34.70.51.191', 'JDBC_USERNAME=abc', 'JDBC_PASSWORD=123', '.']
-  secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
+  # secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
 # images: ['gcr.io/project2-251819/github.com']
 
 secrets:
