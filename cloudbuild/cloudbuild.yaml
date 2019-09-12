@@ -5,8 +5,9 @@ steps:
   secretEnv: ['DATABASE_NAME', 'JDBC_PASSWORD', 'JDBC_USERNAME', 'JDBC_URL', 'JDBC_SCHEMA']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/project2-251819/github.com', '.']
-images: ['gcr.io/project2-251819/github.com']
+  args: ['build', '--tag=gcr.io/project2-251819/github.com', '--build-arg DATABASE_NAME=$$DATABASE_NAME', '--build-arg JDBC_SCHEMA=$$JDBC_SCHEMA', '--build-arg JDBC_URL=$$JDBC_URL', '--build-arg JDBC_USERNAME=$$JDBC_USERNAME', '--build-arg JDBC_PASSWORD=$$JDBC_PASSWORD', '.']
+  secretEnv: ['DATABASE_NAME', 'JDBC_SCHEMA', 'JDBC_URL', 'JDBC_USERNAME', 'JDBC_PASSWORD']
+# images: ['gcr.io/project2-251819/github.com']
 
 secrets:
 - kmsKeyName: 'projects/project2-251819/locations/global/keyRings/db_keyring/cryptoKeys/db_key'
@@ -16,3 +17,4 @@ secrets:
     JDBC_SCHEMA: 'CiQAXCcwx2I0h2pJ1ee6D+UF/IqN7jHSdMXd6Ttv+mCWN8G1gnwSMgAQAZBNB4CBDasVFeKhQRJPvEZPkyR+DHDV8QcraAFR1lXX5u4Z7zIG+I0LZySsDG3W'
     JDBC_USERNAME: 'CiQAXCcwx6Y4up7e18xteWfXdISKb9dEnkbvUHSCnBQ0KMdt7Q0SLAAQAZBNmeM3nr66wpiP6wYq7AaMqaqLsRAiQeXAZ8niwdXwkrD2iSNGRlXL'
     JDBC_PASSWORD: 'CiQAXCcwxz0UqXJ0vmgRVz1a7Ctyw2kAINZPWtptWMI433j+AigSLAAQAZBNDMpEtDxaa4TTg8H43LmUnlMfDxDxGjyGW9er7hRX7vsiRQKBF+bT'
+timeout: "1500s"
